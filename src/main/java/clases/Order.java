@@ -1,5 +1,10 @@
 package clases;
 
+/**
+ * Clase que representa un pedido (Order) con todos sus datos asociados.
+ * Contiene información como el país, región, fechas, unidades vendidas y valores económicos.
+ */
+
 public class Order {
     private String orderId;
     private String priority;
