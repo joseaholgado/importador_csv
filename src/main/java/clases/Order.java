@@ -1,0 +1,101 @@
+package clases;
+
+public class Order {
+    private String orderId;
+    private String priority;
+    private String orderDate;
+    private String region;
+    private String country;
+    private String itemType;
+    private String salesChannel;
+    private String shipDate;
+    private int unitsSold;
+    private double unitPrice;
+    private double unitCost;
+    private double totalRevenue;
+    private double totalCost;
+    private double totalProfit;
+
+    // Constructor
+    public Order(String orderId, String priority, String orderDate, String region, String country,
+                 String itemType, String salesChannel, String shipDate, int unitsSold,
+                 double unitPrice, double unitCost, double totalRevenue, double totalCost, double totalProfit) {
+        this.orderId = orderId;
+        this.priority = priority;
+        this.orderDate = orderDate;
+        this.region = region;
+        this.country = country;
+        this.itemType = itemType;
+        this.salesChannel = salesChannel;
+        this.shipDate = shipDate;
+        this.unitsSold = unitsSold;
+        this.unitPrice = unitPrice;
+        this.unitCost = unitCost;
+        this.totalRevenue = totalRevenue;
+        this.totalCost = totalCost;
+        this.totalProfit = totalProfit;
+    }
+
+    // Getters y Setters
+    public String getOrderId() { return orderId; }
+    public void setOrderId(String orderId) { this.orderId = orderId; }
+
+    public String getPriority() { return priority; }
+    public void setPriority(String priority) { this.priority = priority; }
+
+    public String getOrderDate() { return orderDate; }
+    public void setOrderDate(String orderDate) { this.orderDate = orderDate; }
+
+    public String getRegion() { return region; }
+    public void setRegion(String region) { this.region = region; }
+
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+
+    public String getItemType() { return itemType; }
+    public void setItemType(String itemType) { this.itemType = itemType; }
+
+    public String getSalesChannel() { return salesChannel; }
+    public void setSalesChannel(String salesChannel) { this.salesChannel = salesChannel; }
+
+    public String getShipDate() { return shipDate; }
+    public void setShipDate(String shipDate) { this.shipDate = shipDate; }
+
+    public int getUnitsSold() { return unitsSold; }
+    public void setUnitsSold(int unitsSold) { this.unitsSold = unitsSold; }
+
+    public double getUnitPrice() { return unitPrice; }
+    public void setUnitPrice(double unitPrice) { this.unitPrice = unitPrice; }
+
+    public double getUnitCost() { return unitCost; }
+    public void setUnitCost(double unitCost) { this.unitCost = unitCost; }
+
+    public double getTotalRevenue() { return totalRevenue; }
+    public void setTotalRevenue(double totalRevenue) { this.totalRevenue = totalRevenue; }
+
+    public double getTotalCost() { return totalCost; }
+    public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
+
+    public double getTotalProfit() { return totalProfit; }
+    public void setTotalProfit(double totalProfit) { this.totalProfit = totalProfit; }
+
+    @Override
+    public String toString() {
+        return  "orderId='" + orderId + '\'' +
+                ", priority='" + priority + '\'' +
+                ", orderDate='" + orderDate + '\'' +
+                ", region='" + region + '\'' +
+                ", country='" + country + '\'' +
+                ", itemType='" + itemType + '\'' +
+                ", salesChannel='" + salesChannel + '\'' +
+                ", shipDate='" + shipDate + '\'' +
+                ", unitsSold=" + unitsSold +
+                ", unitPrice=" + unitPrice +
+                ", unitCost=" + unitCost +
+                ", totalRevenue=" + totalRevenue +
+                ", totalCost=" + totalCost +
+                ", totalProfit=" + totalProfit +
+                ';';
+    }
+
+}
