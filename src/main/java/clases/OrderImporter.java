@@ -1,8 +1,12 @@
 package clases;
 
+import org.apache.commons.collections.list.TreeList;
+
 import java.io.*; //para BufferedReader y FileReader
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 
 public class OrderImporter {
     /**
@@ -14,9 +18,11 @@ public class OrderImporter {
 
     public List<Order> importCSV(String file) throws IOException {
         String line;
+        int incrementalId = 1;
 
         //Lista donde guardaremos los pedidos importados
         List<Order> orders = new ArrayList<>();
+        orders.sort(Comparator.comparing(Order::getOrderId));
 
         //Abrimos el archivo para leerlo línea por línea
         BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -28,7 +34,8 @@ public class OrderImporter {
             String[] data = line.split(",");
 
             // Creamos un objeto Order con los datos del CSV
-            Order o = new Order(
+            Order order = new Order(
+                    incrementalId++,
                     data[0], data[1], data[2], data[3], data[4],
                     data[5], data[6], data[7], Integer.parseInt(data[8]),
                     Double.parseDouble(data[9]), Double.parseDouble(data[10]),
@@ -36,10 +43,11 @@ public class OrderImporter {
                     Double.parseDouble(data[13])
             );
 
-            orders.add(o);
+            orders.add(order);
         }
 
         reader.close();
+
         return orders;
     }
 }

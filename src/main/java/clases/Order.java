@@ -6,6 +6,7 @@ package clases;
  */
 
 public class Order {
+    private int id;
     private String orderId;
     private String priority;
     private String orderDate;
@@ -21,7 +22,9 @@ public class Order {
     private double totalCost;
     private double totalProfit;
 
-    // Constructor
+
+    // Constructor con datos unicos del enunciado csv
+
     public Order(String orderId, String priority, String orderDate, String region, String country,
                  String itemType, String salesChannel, String shipDate, int unitsSold,
                  double unitPrice, double unitCost, double totalRevenue, double totalCost, double totalProfit) {
@@ -41,7 +44,34 @@ public class Order {
         this.totalProfit = totalProfit;
     }
 
+    //Contructor añadiendo ID
+    public Order(int id, String orderId, String priority, String orderDate, String region, String country,
+                 String itemType, String salesChannel, String shipDate, int unitsSold,
+                 double unitPrice, double unitCost, double totalRevenue, double totalCost, double totalProfit) {
+
+        this.id = id;
+        this.orderId = orderId;
+        this.priority = priority;
+        this.orderDate = orderDate;
+        this.region = region;
+        this.country = country;
+        this.itemType = itemType;
+        this.salesChannel = salesChannel;
+        this.shipDate = shipDate;
+        this.unitsSold = unitsSold;
+        this.unitPrice = unitPrice;
+        this.unitCost = unitCost;
+        this.totalRevenue = totalRevenue;
+        this.totalCost = totalCost;
+        this.totalProfit = totalProfit;
+    }
+
+
     // Getters y Setters
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
     public String getOrderId() { return orderId; }
     public void setOrderId(String orderId) { this.orderId = orderId; }
 
@@ -84,9 +114,11 @@ public class Order {
     public double getTotalProfit() { return totalProfit; }
     public void setTotalProfit(double totalProfit) { this.totalProfit = totalProfit; }
 
+
     @Override
     public String toString() {
-        return  "orderId='" + orderId + '\'' +
+        return  "ID='"+id+'\'' +
+                "orderId='" + orderId + '\'' +
                 ", priority='" + priority + '\'' +
                 ", orderDate='" + orderDate + '\'' +
                 ", region='" + region + '\'' +

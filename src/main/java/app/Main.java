@@ -1,17 +1,18 @@
 package app;
 import clases.Order;
 import clases.OrderImporter;
+import clases.Menu;
 
 import java.io.*;
 import java.util.List;
 
 
-
-
 public class Main {
     /**
-     * Lee un archivo CSV con datos de ventas, los convierte a objetos Order
-     * y los imprime en consola.
+     * Programa principal que:
+     * - Lee un archivo CSV con datos de ventas
+     * - Convierte cada registro en un objeto Order
+     * - Muestra un menú interactivo en la consola para visualizar y ordenar los pedidos
      */
 
     public static void main(String[] args) throws Exception {
@@ -21,10 +22,10 @@ public class Main {
         OrderImporter importer = new OrderImporter();
         List<Order> orders = importer.importCSV(file);
 
-        for (Order order : orders) {
-            System.out.println(order);
-        }
-        System.out.println("\nÉxito");
+        Menu menu = new Menu(orders);
+        menu.mostrarMenu();
+
+        //System.out.println("\nÉxito");
 
     }
 }
