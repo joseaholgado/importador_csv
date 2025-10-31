@@ -67,7 +67,6 @@ public class Main {
             }
         } while (newRute != null);
 
-        System.out.println("\nArchivo cargado correctamente: " + filePath);
     }
 }
 
