@@ -1,52 +1,60 @@
 package clases;
 
-import org.apache.commons.collections.list.TreeList;
-
 import java.io.*; //para BufferedReader y FileReader
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 public class OrderImporter {
+
     /**
-     * Importa un archivo CSV y convierte cada línea en un objeto Order.
-     * @param file Ruta del archivo CSV.
-     * @return Lista de objetos Order.
-     * @throws IOException Si ocurre un error al leer el archivo.
+     * Clase responsable de importar los datos de un archivo CSV
+     * y convertir cada línea en un objeto {@link Order}.
+     *
+     * Este importador detecta automáticamente la posición de las columnas
+     * mediante el encabezado del archivo, lo que permite
+     * procesar archivos CSV incluso si las columnas no están siempre en el mismo orden.
      */
 
     public List<Order> importCSV(String file) throws IOException {
         String line;
         int incrementalId = 1;
-
-        //Lista donde guardaremos los pedidos importados
         List<Order> orders = new ArrayList<>();
-        orders.sort(Comparator.comparing(Order::getOrderId));
 
-        //Abrimos el archivo para leerlo línea por línea
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        reader.readLine(); //salta el header
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 
+            // Leer encabezado y dividirlo
+            String headerLine = reader.readLine();
+            String[] headers = headerLine.split(",");
 
+            // Crear un mapa clave-valor
+            Map<String, Integer> columnIndex = new HashMap<>();
+            for (int i = 0; i < headers.length; i++) {
+                columnIndex.put(headers[i].trim(), i);
+            }
 
-        while ((line = reader.readLine()) != null) {
-            String[] data = line.split(",");
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
 
-            // Creamos un objeto Order con los datos del CSV
-            Order order = new Order(
-                    incrementalId++,
-                    data[0], data[1], data[2], data[3], data[4],
-                    data[5], data[6], data[7], Integer.parseInt(data[8]),
-                    Double.parseDouble(data[9]), Double.parseDouble(data[10]),
-                    Double.parseDouble(data[11]), Double.parseDouble(data[12]),
-                    Double.parseDouble(data[13])
-            );
+                Order order = new Order(
+                        incrementalId++,
+                        data[columnIndex.get("Order ID")],
+                        data[columnIndex.get("Order Priority")],
+                        data[columnIndex.get("Order Date")],
+                        data[columnIndex.get("Region")],
+                        data[columnIndex.get("Country")],
+                        data[columnIndex.get("Item Type")],
+                        data[columnIndex.get("Sales Channel")],
+                        data[columnIndex.get("Ship Date")],
+                        Integer.parseInt(data[columnIndex.get("Units Sold")]),
+                        Double.parseDouble(data[columnIndex.get("Unit Price")]),
+                        Double.parseDouble(data[columnIndex.get("Unit Cost")]),
+                        Double.parseDouble(data[columnIndex.get("Total Revenue")]),
+                        Double.parseDouble(data[columnIndex.get("Total Cost")]),
+                        Double.parseDouble(data[columnIndex.get("Total Profit")])
+                );
 
-            orders.add(order);
+                orders.add(order);
+            }
         }
-
-        reader.close();
 
         return orders;
     }
