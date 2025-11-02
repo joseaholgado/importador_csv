@@ -20,5 +20,11 @@ jobs:
           distribution: 'temurin'
           java-version: '25'
 
-      - name: Build and test with Maven
+      - name: Construir test con Maven
         run: mvn -B clean verify
+
+      - name: Generar Documentacion Java
+        run: mvn javadoc:javadoc
+
+      - name: Empaquetar JAR
+        run: mvn package
