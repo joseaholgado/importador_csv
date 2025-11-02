@@ -18,6 +18,7 @@ La aplicación valida que el archivo seleccionado tenga la extensión correcta (
   - Ordenar pedidos por `OrderID`.
   - Cambiar el archivo CSV durante la ejecución.
 - **Pruebas unitarias** con JUnit para verificar el funcionamiento de la clase `Order`.
+- **Generación automática de documentación (JavaDoc)** y empaquetado (`.jar`) mediante **GitHub Actions**
 
 ---
 
