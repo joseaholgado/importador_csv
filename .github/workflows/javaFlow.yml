@@ -32,7 +32,7 @@ jobs:
       - name: Subida de Artefactos
         uses: actions/upload-artifact@v4
         with:
-          name: Construir-Artefactos
+          name: Construcción de Artefactos
           path: |
             target/*.jar
             target/site/apidocs/
