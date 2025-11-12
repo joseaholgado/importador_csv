@@ -76,14 +76,14 @@ public class Main {
 
             dao.insertAll(orders);  // guarda en SQLite
 
-            // Mostrar resumen desde BD (Region, Country, Item Type, Sales Channel, Order Priority)
-            SummaryService.printDbSummary(dao);
+            // Mostrar resumen desde BD
+            //SummaryService.printDbSummary(dao);
 
             // Exportar CSV ordenado por Order ID con fechas dd/MM/yyyy
             Path out = Path.of("./salida/Exportacion_CSV.csv");
             var sortedFromDb = dao.findAllOrderByOrderId();
             CsvExporter.exportSortedByOrderId(sortedFromDb, out);
-            System.out.println("\nCSV exportado en: " + out.toAbsolutePath());
+            //System.out.println("\nCSV exportado en: salida/" + out.getFileName());
 
             do {
                 Menu menu = new Menu(orders, importer, dao, out);
@@ -98,10 +98,10 @@ public class Main {
 
                     // Guarda el nuevo CSV en BD
                     dao.insertAll(orders);
-                    SummaryService.printDbSummary(dao);
+                    //SummaryService.printDbSummary(dao); Muestra resumen del Csv al cambiar en el menú
                     var sorted2 = dao.findAllOrderByOrderId();
                     CsvExporter.exportSortedByOrderId(sorted2, out);
-                    System.out.println("\nCSV exportado en: " + out.toAbsolutePath());
+                    //System.out.println("\nCSV exportado en: " + out.toAbsolutePath());
                 }
             } while (newRute != null);
 

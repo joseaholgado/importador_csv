@@ -182,7 +182,7 @@ public class Menu {
         try {
             var sorted = dao.findAllOrderByOrderId();
             clases.CsvExporter.exportSortedByOrderId(sorted, out);
-            System.out.println("Exportado CSV en: " + out.toAbsolutePath());
+            System.out.println("Exportado CSV en: salida/" + out.getFileName());
         } catch (Exception e) {
             System.out.println("Error exportando CSV: " + e.getMessage());
         }
